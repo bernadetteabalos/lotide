@@ -1,12 +1,3 @@
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`✅✅✅ Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log (`🛑🛑🛑 Assertion Failed: ${actual} !== ${expected}`);
-  }
-  return;
-};
-
 const eqArrays = function(arrayOne, arrayTwo) {
   if (arrayOne.length !== arrayTwo.length) {
     return false;
@@ -29,6 +20,18 @@ const assertArraysEqual = function(arrayOne, arrayTwo) {
   console.log(`✅✅✅ Assertion Passed: ${arrayOne} === ${arrayTwo}`);
 };
 
-//assertArraysEqual(["3"],[3]);
-assertArraysEqual([1,2,3],[3,2,1]);
-assertArraysEqual([1,2,3],[1,2,3]);
+const flatten = function(array) {
+  let flattened = [];
+  for (let i = 0; i < array.length; i++) {
+    let c = array[i];
+    if (Array.isArray(c)) {
+      flattened = flattened.concat(flatten(c));
+    } else {
+      flattened.push(c);
+    }
+  }
+  return flattened;
+};
+
+console.log(flatten([1, 2, [3, 4], 5, [6]]));
+
